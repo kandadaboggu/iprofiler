@@ -9,23 +9,29 @@ module Iprofiler
   class Client
     include Api::QueryMethods
 
-    attr_reader :api_key, :api_secret, :api_host
+    attr_accessor :api_key, :api_secret, :api_host
 
-    def initialize(key=Iprofiler.key, secret=Iprofiler.secret, host=Iprofiler.host)
-      @api_key = key
-      @api_secret = secret
-      @api_host = host
+    def initialize(api_key=Iprofiler.api_key, api_secret=Iprofiler.api_secret, api_host=Iprofiler.api_host)
+      @api_key = api_key
+      @api_secret = api_secret
+      @api_host = api_host
+    end
+
+    def valid_credentials?
+      company_lookup({}).code == 200
     end
 
   protected
 
     def get(api_path, options)
-      response = Net::HTTP.get_response(URI(url))
+      response = Net::HTTP.get_response(request_uri(api_path, options))
       Mash.from_json(response.body).tap do |reply|
         code = response.code.to_i
-        reply[:code] = code
-        if code != 200
-          reply[:status] = "error"
+        reply.code = code
+        if code == 200
+          reply.status = reply.status.to_sym
+        else
+          reply.status = :error
         end
       end
     end
@@ -34,14 +40,14 @@ module Iprofiler
 
     def request_uri api_path, options
       authp = auth_params(api_path)
-      requestp = options.map{|k, v| "#{k}=#{v}"}.join("&")
-      URI("#{host}#{api_path}?#{authp}&#{requestp}")
+      requestp = options.map{|k, v| "#{k}=#{CGI.escape(v)}"}.join("&")
+      URI("#{api_host}#{api_path}?#{authp}&#{requestp}")
     end
 
     def auth_params(api_path, verb="get")
       epoch = Time.now.to_i
       signature = "#{verb.upcase}\n#{epoch}\n#{api_path}"
-      "api_key=#{api_key}&epoch=#{epoch}&signature=#{sign_data(api_secret, signature)}"
+      "api_key=#{CGI.escape(api_key)}&epoch=#{epoch}&signature=#{sign_data(signature)}"
     end  
 
     def sign_data(str)

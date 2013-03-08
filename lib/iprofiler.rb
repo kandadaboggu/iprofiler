@@ -1,14 +1,14 @@
 module Iprofiler
 
   class << self
-    attr_accessor :key, :secret, :host
+    attr_accessor :api_key, :api_secret, :api_host
 
     # config/initializers/iprofiler.rb (for instance)
     #
     # Iprofiler.configure do |config|
-    #   config.key = 'consumer_key'
-    #   config.secret = 'consumer_secret'
-    #   config.host = 'http://visitoriq2.iprofile.net'
+    #   config.api_key = 'consumer_key'
+    #   config.api_secret = 'consumer_secret'
+    #   config.api_host = 'http://visitoriq2.iprofile.net'
     # end
     #
     # elsewhere

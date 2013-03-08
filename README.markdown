@@ -22,8 +22,8 @@ Travis CI : [![Build Status](https://secure.travis-ci.org/kandadaboggu/iprofiler
       else
       end
     else
-      reply.error_code
-      reply.error_message
+      reply.code
+      reply.message
     end
 
 ## TODO
