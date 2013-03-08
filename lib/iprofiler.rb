@@ -1,5 +1,3 @@
-require 'oauth'
-
 module Iprofiler
 
   class << self
@@ -10,6 +8,7 @@ module Iprofiler
     # Iprofiler.configure do |config|
     #   config.key = 'consumer_key'
     #   config.secret = 'consumer_secret'
+    #   config.host = 'http://visitoriq2.iprofile.net'
     # end
     #
     # elsewhere
@@ -24,7 +23,5 @@ module Iprofiler
   autoload :Api,     "iprofiler/api"
   autoload :Client,  "iprofiler/client"
   autoload :Mash,    "iprofiler/mash"
-  autoload :Errors,  "iprofiler/errors"
-  autoload :Helpers, "iprofiler/helpers"
   autoload :Version, "iprofiler/version"
 end
