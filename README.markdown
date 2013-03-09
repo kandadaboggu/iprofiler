@@ -7,7 +7,9 @@ Travis CI : [![Build Status](https://api.travis-ci.org/kandadaboggu/iprofiler.pn
 
 Add the following line to your Gemfile.
 
-    gem 'iprofiler'
+``` ruby
+gem 'iprofiler'
+```
 
 Install the gem by using `bundler`
 
@@ -16,43 +18,50 @@ Install the gem by using `bundler`
 ## Usage
 
 **Setting the connection parameters globally**
- 
-    Iprofiler.configure do |config|
-      config.api_key = "foo" 
-      config.api_secret = "bar"
-      config.api_host = "http://localhost:3000"
-    end
-    client = Iprofiler::Client.new
+
+``` ruby
+Iprofiler.configure do |config|
+  config.api_key = "foo" 
+  config.api_secret = "bar"
+  config.api_host = "http://localhost:3000"
+end
+client = Iprofiler::Client.new
+```
  
  
 **Setting the connection parameters per connection**
  
-    client = Iprofiler::Client.new ("foo", "bar", "http://visitoriq2.iprofile.net")
+``` ruby
+client = Iprofiler::Client.new ("foo", "bar", "http://visitoriq2.iprofile.net")
+```
  
 **Invoking the API**
  
-    client = Iprofiler::Client.new
-    client.company_lookup(:company_name => "Bank Of America")    
-    client.company_lookup(:ip_address => "10.10.10.2")
-    client.company_lookup(:domain => "bankofamerica.com")
+``` ruby
+client = Iprofiler::Client.new
+client.company_lookup(:company_name => "Bank Of America")    
+client.company_lookup(:ip_address => "10.10.10.2")
+client.company_lookup(:domain => "bankofamerica.com")
+```
     
 **Error/ISP handling**
  
-    reply = client.company_lookup(:ip_address => "2.228.11.0")    
-    if reply.status == :found
-      if reply.company.type == "company"
-        puts "Processed Company"
-      else
-        puts "Ignored ISP"
-      end
-    elsif reply.status == :not_found
-      puts "Not found"
-    elsif reply.status == :insufficient_input
-      puts "Invalid input"
-    elsif reply.status == :error
-      puts "Error #{reply.error}"
-    end
-
+``` ruby
+reply = client.company_lookup(:ip_address => "2.228.11.0")    
+if reply.status == :found
+  if reply.company.type == "company"
+    puts "Processed Company"
+  else
+    puts "Ignored ISP"
+  end
+elsif reply.status == :not_found
+  puts "Not found"
+elsif reply.status == :insufficient_input
+  puts "Invalid input"
+elsif reply.status == :error
+  puts "Error #{reply.error}"
+end
+```
 
 ## TODO
 
