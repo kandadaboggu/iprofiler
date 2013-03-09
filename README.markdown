@@ -2,8 +2,7 @@
 
 Ruby wrapper for the [Iprofile API](http://www.iprofile.net/developer). Heavily inspired by [Wynn Netherland's](https://github.com/pengwynn) [LinkedIn gem](https://github.com/pengwynn/linkedin).
 
-Travis CI : [![Build Status](https://secure.travis-ci.org/kandadaboggu/iprofiler.png)](http://travis-ci.org/kandadaboggu/iprofiler)
-
+Travis CI : [![Build Status](https://api.travis-ci.org/kandadaboggu/iprofiler.png?branch=master)](http://travis-ci.org/kandadaboggu/iprofiler)
 ## Installation
 
 Add the following line to your Gemfile.
