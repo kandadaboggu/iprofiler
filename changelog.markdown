@@ -13,3 +13,8 @@
 * Symbolized the type value in company structure
 * Updated README.markdown
 
+## 0.1.3 - March 09, 2013
+
+* Updated the dependency
+* Used VCR for server mocking
+

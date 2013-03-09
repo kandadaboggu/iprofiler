@@ -59,7 +59,7 @@ describe Iprofiler::Api do
     end
   end
 
-  describe "authentication" do
+  describe "authentication", :vcr do
 
     it "should be able to authenticate" do
       client.valid_credentials?.should eq(true)
@@ -78,7 +78,7 @@ describe Iprofiler::Api do
   end
 
   
-  describe "company lookup" do
+  describe "company lookup", :vcr do
 
     let(:company) { 
       Iprofiler::Mash.new(

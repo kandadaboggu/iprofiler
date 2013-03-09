@@ -56,7 +56,8 @@ module Iprofiler
     def request_uri api_path, options
       authp = auth_params(api_path)
       requestp = options.map{|k, v| "#{k}=#{CGI.escape(v)}"}.join("&")
-      URI("#{api_host}#{api_path}?#{authp}&#{requestp}")
+      queryp = [(requestp unless requestp.empty?), authp].compact.join("&")
+      URI("#{api_host}#{api_path}?#{queryp}")
     end
 
     def auth_params(api_path, verb="get")

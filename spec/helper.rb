@@ -7,20 +7,18 @@ require 'rspec'
 require 'webmock/rspec'
 require 'vcr'
 
-VCR.config do |c|
-  c.cassette_library_dir     = 'spec/fixtures/cassette_library'
-  c.stub_with                :webmock
-  c.ignore_localhost         = true
-  c.default_cassette_options = { :record => :none }
+VCR.configure do |c|
+  c.register_request_matcher(:uri_without_epoch_and_signature, 
+   &VCR.request_matchers.uri_without_param(:epoch, :signature))
+  c.cassette_library_dir     = File.join("./", "fixtures", "cassette_library")
+  c.hook_into                :webmock # or :fakeweb
+  c.ignore_localhost         = false
+  c.default_cassette_options = { :match_requests_on => [:method, :uri_without_epoch_and_signature]}
+  c.configure_rspec_metadata!
+  # c.default_cassette_options = { :record => :none }
 end
+
 
 RSpec.configure do |c|
-  c.extend VCR::RSpec::Macros
-end
-
-def expect_post(url, body, result = nil)
-  a_request(:post, url).with({
-    :body => fixture(body).read,
-    :headers => { :content_type => 'application/xml' }
-  }).should have_been_made.once
+  c.treat_symbols_as_metadata_keys_with_true_values = true
 end

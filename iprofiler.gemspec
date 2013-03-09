@@ -2,15 +2,15 @@
 require File.expand_path('../lib/iprofiler/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.add_dependency 'hashie', '~> 1.2'
-  gem.add_dependency 'multi_json', '~> 1.0'
-  gem.add_development_dependency 'json', '~> 1.6'
-  gem.add_development_dependency 'rake', '~> 0.9'
-  gem.add_development_dependency 'rdoc', '~> 3.8'
-  gem.add_development_dependency 'rspec', '~> 2.6'
-  gem.add_development_dependency 'simplecov', '~> 0.5'
-  gem.add_development_dependency 'vcr', '~> 1.10'
-  gem.add_development_dependency 'webmock', '~> 1.7'
+  gem.add_dependency 'hashie', '~> 2.0.2'
+  gem.add_dependency 'multi_json', '~> 1.6.1'
+  gem.add_development_dependency 'json', '~> 1.7.7'
+  gem.add_development_dependency 'rake', '~> 10.0.3'
+  gem.add_development_dependency 'rdoc', '~> 4.0.0'
+  gem.add_development_dependency 'rspec', '~> 2.13.0'
+  gem.add_development_dependency 'simplecov', '~> 0.7.1'
+  gem.add_development_dependency 'vcr', '~> 2.4.0'
+  gem.add_development_dependency 'webmock', '~> 1.11.0'
   gem.authors = ["Harish Shetty"]
   gem.description = %q{Ruby wrapper for the iProfile API}
   gem.email = ['kandada.boggu@gmail.com']
