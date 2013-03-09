@@ -36,7 +36,6 @@ Install the gem by using `bundler`
     client.company_lookup(:company_name => "Bank Of America")    
     client.company_lookup(:ip_address => "10.10.10.2")
     client.company_lookup(:domain => "bankofamerica.com")
-    client.company_lookup(:url => "accipitercom.com")
     
 **Error/ISP handling**
  
