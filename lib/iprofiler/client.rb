@@ -80,8 +80,6 @@ module Iprofiler
       return Mash.new.tap do |reply|
         reply.status = :error
         reply.code = 400
-
-        missing = CONNECTION_PARAMETERS.none?{ |attr| send(attr).nil?}
         reply.error = "Invalid or missing API connection parameter(s)[#{missing_credentials.join(",")}]"
       end
     end
