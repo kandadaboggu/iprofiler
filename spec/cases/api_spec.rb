@@ -55,6 +55,7 @@ describe Iprofiler::Api do
         client.api_host.should eq(new_api_host)
       end
 
+
     end
   end
 
@@ -67,6 +68,12 @@ describe Iprofiler::Api do
     it "should not be able to authenticate" do
       client.api_key = "DUMMY KEY"
       client.valid_credentials?.should eq(false)
+    end
+
+    it "empty authentication parameters should not be allowed" do
+      client.api_key = nil
+      reply = client.company_lookup({})
+      reply.status.should eq(:error)
     end
   end
 

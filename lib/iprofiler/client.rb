@@ -9,34 +9,46 @@ module Iprofiler
   class Client
     include Api::QueryMethods
 
-    attr_accessor :api_key, :api_secret, :api_host
+    CONNECTION_PARAMETERS = [:api_key, :api_secret, :api_host]
+    attr_reader :api_key, :api_secret, :api_host, :missing_credentials
+
+    CONNECTION_PARAMETERS.each do |attr|
+      define_method "#{attr}=" do | val |
+        instance_variable_set("@#{attr}", val).tap do |v|
+          validate_credential_presence
+        end
+      end
+    end
 
     def initialize(api_key=Iprofiler.api_key, api_secret=Iprofiler.api_secret, api_host=Iprofiler.api_host)
       @api_key = api_key
       @api_secret = api_secret
       @api_host = api_host
+      validate_credential_presence
     end
 
     def valid_credentials?
-      company_lookup({}).code == 200
+      credentials_present? && (company_lookup({}).code == 200)
     end
 
   protected
 
+    def credentials_present?
+      missing_credentials.size == 0
+    end
+
+    def credentials_missing?
+      !credentials_present?
+    end
+
+    def validate_credential_presence
+      @missing_credentials = CONNECTION_PARAMETERS.select{ |attr| send(attr).nil?}
+    end
+
     def get(api_path, options)
-      response = Net::HTTP.get_response(request_uri(api_path, options))
-      Mash.from_json(response.body).tap do |reply|
-        code = response.code.to_i
-        reply.code = code
-        if code == 200
-          reply.status = reply.status.to_sym
-        else
-          reply.status = :error
-        end
-        # email requests are served by Leadiq server
-        email = options['email'] || options[:email]
-        reply.email = email unless email.nil?
-      end
+      return credentials_missing_error if credentials_missing?
+      http_reply = Net::HTTP.get_response(request_uri(api_path, options))
+      construct_reply(http_reply, options)
     end
 
   private
@@ -64,6 +76,30 @@ module Iprofiler
       )
     end
 
+    def credentials_missing_error
+      return Mash.new.tap do |reply|
+        reply.status = :error
+        reply.code = 400
+
+        missing = CONNECTION_PARAMETERS.none?{ |attr| send(attr).nil?}
+        reply.error = "Invalid or missing API connection parameter(s)[#{missing_credentials.join(",")}]"
+      end
+    end
+
+    def construct_reply(response, options)
+      Mash.from_json(response.body).tap do |reply|
+        code = response.code.to_i
+        reply.code = code
+        if code == 200
+          reply.status = reply.status.to_sym
+        else
+          reply.status = :error
+        end
+        # email requests are served by Leadiq server
+        email = options['email'] || options[:email]
+        reply.email = email unless email.nil?
+      end
+    end
   end
 
 end
