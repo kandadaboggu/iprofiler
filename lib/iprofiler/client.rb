@@ -90,6 +90,9 @@ module Iprofiler
         reply.code = code
         if code == 200
           reply.status = reply.status.to_sym
+          if reply.status == :found
+            reply.company.type = reply.company.type.to_sym
+          end
         else
           reply.status = :error
         end

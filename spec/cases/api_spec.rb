@@ -99,18 +99,21 @@ describe Iprofiler::Api do
       reply = client.company_lookup(:company_name => company.name)
       reply.code.should eq(200)
       reply.status.should eq(:found)
+      reply.company.type.should eq(:company)
     end
 
     it "should be able to query using domain name" do
       reply = client.company_lookup(:domain => company.url)
       reply.code.should eq(200)
       reply.status.should eq(:found)
+      reply.company.type.should eq(:company)
     end
 
     it "should be able to query using ip address" do
       reply = client.company_lookup(:ip_address => company.ip_address)
       reply.code.should eq(200)
       reply.status.should eq(:found)
+      reply.company.type.should eq(:company)
     end
 
     it "should be able to query using employee email id" do

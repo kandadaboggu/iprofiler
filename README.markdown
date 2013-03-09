@@ -6,25 +6,52 @@ Travis CI : [![Build Status](https://secure.travis-ci.org/kandadaboggu/iprofiler
 
 ## Installation
 
-    [sudo] gem install iprofiler
+Add the following line to your Gemfile.
+
+    gem 'iprofiler'
+    bundle install
 
 ## Usage
 
-    require 'rubygems'
-    require 'iprofiler'
-
-    # get your api keys at https://www.linkedin.com/secure/developer
-    client = Iprofiler::Client.new('your_consumer_key', 'your_consumer_secret')
-    reply = client.company_lookup(:ip_address => "10.10.20.30")
-    if reply.status == :found
-      company = reply.company
-      if company.type == :isp
-      else
-      end
-    else
-      reply.code
-      reply.message
+**Setting the connection parameters globally**
+ 
+    Iprofiler.configure do |config|
+      config.api_key = "foo" 
+      config.api_secret = "bar"
+      config.api_host = "http://localhost:3000"
     end
+    client = Iprofiler::Client.new
+ 
+ 
+**Setting the connection parameters per connection**
+ 
+    client = Iprofiler::Client.new ("foo", "bar", "http://localhost:3000")
+ 
+**Invoking the API**
+ 
+    client = Iprofiler::Client.new
+    client.company_lookup(:company_name => "Bank Of America")    
+    client.company_lookup(:ip_address => "10.10.10.2")
+    client.company_lookup(:domain => "bankofamerica.com")
+    client.company_lookup(:url => "accipitercom.com")
+    
+**Error/ISP handling**
+ 
+    reply = client.company_lookup(:ip_address => "2.228.11.0")    
+    if reply.status == :found
+      if reply.company.type == "company"
+        puts "Processed Company"
+      else
+        puts "Ignored ISP"
+      end
+    elsif reply.status == :not_found
+      puts "Not found"
+    elsif reply.status == :insufficient_input
+      puts "Invalid input"
+    elsif reply.status == :error
+      puts "Error #{reply.error}"
+    end
+
 
 ## TODO
 
