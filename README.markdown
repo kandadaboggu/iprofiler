@@ -9,6 +9,9 @@ Travis CI : [![Build Status](https://secure.travis-ci.org/kandadaboggu/iprofiler
 Add the following line to your Gemfile.
 
     gem 'iprofiler'
+
+Install the gem by using `bundler`
+
     bundle install
 
 ## Usage
@@ -25,7 +28,7 @@ Add the following line to your Gemfile.
  
 **Setting the connection parameters per connection**
  
-    client = Iprofiler::Client.new ("foo", "bar", "http://localhost:3000")
+    client = Iprofiler::Client.new ("foo", "bar", "http://visitoriq2.iprofile.net")
  
 **Invoking the API**
  
