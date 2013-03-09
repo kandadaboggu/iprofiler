@@ -33,6 +33,9 @@ module Iprofiler
         else
           reply.status = :error
         end
+        # email requests are served by Leadiq server
+        email = options['email'] || options[:email]
+        reply.email = email unless email.nil?
       end
     end
 
