@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3000/ip.json?api_key=4QNFkKjPTGK2NXAWsQQU&company_name=Bank%20Of%20America&epoch=1362822205&signature=tTI7kLDMXE1FhQ1HCDWXovu/o6o=
+    uri: http://localhost:3000/ip.json?api_key=4QNFkKjPTGK2NXAWsQQU&company_name=Bank%20Of%20America&epoch=1363208879&signature=UwlP9wPs/qRFLtixSE9OKVo6yNg=
     body:
       encoding: US-ASCII
       string: ''
@@ -23,15 +23,15 @@ http_interactions:
       Cache-Control:
       - must-revalidate, private, max-age=0
       X-Request-Id:
-      - 310b80964fae323b49c7f115c97ba213
+      - 5c0b2f1f8c17ec552f197d1746f3c5a5
       X-Runtime:
-      - '0.595376'
+      - '0.200591'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       X-Miniprofiler-Ids:
-      - ! '["r0t3loirn24eib9cpy4r","h918ih6kn5watctclq4","5abbydkho7uw86zbtrxb","mkum1afzfmogb1d2txu9","ekxm34qeros8j1jgk99h","fd7qm2k72bvv83iunav9","zpul48nvu7sl5r7urxys","mdhgtmpl8i09x9mh9sh0","dke5rkrjn4b87zmi91qr","r2piujba0k01ybx12q21"]'
+      - ! '["nc84ookms266l0fbn1ap","h918ih6kn5watctclq4","5abbydkho7uw86zbtrxb","mkum1afzfmogb1d2txu9","ekxm34qeros8j1jgk99h","fd7qm2k72bvv83iunav9","zpul48nvu7sl5r7urxys","mdhgtmpl8i09x9mh9sh0","dke5rkrjn4b87zmi91qr","r2piujba0k01ybx12q21"]'
       Connection:
       - close
       Server:
@@ -42,5 +42,5 @@ http_interactions:
         of America","type":"company","industry":"Financial Services","url":"bankofamerica.com","employees":272600,"employee_range":"More
         than 50,000"},"company_name":"Bank Of America"}'
     http_version: 
-  recorded_at: Sat, 09 Mar 2013 09:43:25 GMT
+  recorded_at: Wed, 13 Mar 2013 21:07:59 GMT
 recorded_with: VCR 2.4.0

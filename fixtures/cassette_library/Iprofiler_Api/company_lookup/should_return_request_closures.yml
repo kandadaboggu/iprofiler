@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3000/ip.json?api_key=4QNFkKjPTGK2NXAWsQQU&company_name=Bank%20Of%20America&customer_request_id=foo%20bar%2028383&domain=bankofamerica.com&email=foo@boa.com&epoch=1362822206&ip_address=12.13.77.156&signature=5GxBCc4Gb9794uSQHIFlJy%2BnY6M=
+    uri: http://localhost:3000/ip.json?api_key=4QNFkKjPTGK2NXAWsQQU&company_name=Bank%20Of%20America&customer_request_id=foo%20bar%2028383&domain=bankofamerica.com&email=foo@boa.com&epoch=1363208879&ip_address=12.13.77.156&signature=UwlP9wPs/qRFLtixSE9OKVo6yNg=
     body:
       encoding: US-ASCII
       string: ''
@@ -23,15 +23,15 @@ http_interactions:
       Cache-Control:
       - must-revalidate, private, max-age=0
       X-Request-Id:
-      - b543e848e6132d13fc04703d35f23bf3
+      - a884bf3f2b7b9bfc7c06bb4e4db826ef
       X-Runtime:
-      - '0.063921'
+      - '0.020811'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       X-Miniprofiler-Ids:
-      - ! '["ay68753e7uyp0bqg2328","h918ih6kn5watctclq4","5abbydkho7uw86zbtrxb","mkum1afzfmogb1d2txu9","ekxm34qeros8j1jgk99h","fd7qm2k72bvv83iunav9","zpul48nvu7sl5r7urxys","mdhgtmpl8i09x9mh9sh0","dke5rkrjn4b87zmi91qr","r2piujba0k01ybx12q21"]'
+      - ! '["ondp385xk8v0y8sseuq4","h918ih6kn5watctclq4","5abbydkho7uw86zbtrxb","mkum1afzfmogb1d2txu9","ekxm34qeros8j1jgk99h","fd7qm2k72bvv83iunav9","zpul48nvu7sl5r7urxys","mdhgtmpl8i09x9mh9sh0","dke5rkrjn4b87zmi91qr","r2piujba0k01ybx12q21"]'
       Connection:
       - close
       Server:
@@ -43,5 +43,5 @@ http_interactions:
         than 50,000"},"ip_address":"12.13.77.156","domain":"bankofamerica.com","company_name":"Bank
         Of America","customer_request_id":"foo bar 28383"}'
     http_version: 
-  recorded_at: Sat, 09 Mar 2013 09:43:27 GMT
+  recorded_at: Wed, 13 Mar 2013 21:07:59 GMT
 recorded_with: VCR 2.4.0
