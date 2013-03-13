@@ -42,6 +42,13 @@ client = Iprofiler::Client.new
 client.company_lookup(:company_name => "Bank Of America")    
 client.company_lookup(:ip_address => "10.10.10.2")
 client.company_lookup(:domain => "bankofamerica.com")
+
+# When invoked with multiple parameters, the lookup is performed in the following order
+#      domain
+#      company_name
+#      ip_address
+client.company_lookup(:domain => "bankofamerica.com", :company_name => "Bank Of America", :ip_address => "10.10.10.2")
+
 ```
     
 **Error/ISP handling**
