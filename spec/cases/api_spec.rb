@@ -27,28 +27,28 @@ describe Iprofiler::Api do
       let(:new_api_secret) { "new_secret" }
       let(:new_api_host) { "new_host" }
 
-      it "connection parameters should inherit from connection parameters" do
+      it "connection parameters should inherit global connection parameters" do
         client = Iprofiler::Client.new
         client.api_key.should eq(api_key)
         client.api_secret.should eq(api_secret)
         client.api_host.should eq(api_host)
       end
 
-      it "api key should be overridable" do
+      it "api key value should be overridable" do
         client = Iprofiler::Client.new(new_api_key)
         client.api_key.should eq(new_api_key)
         client.api_secret.should eq(api_secret)
         client.api_host.should eq(api_host)
       end
 
-      it "api secret should be overridable" do
+      it "api secret value should be overridable" do
         client = Iprofiler::Client.new(new_api_key, new_api_secret)
         client.api_key.should eq(new_api_key)
         client.api_secret.should eq(new_api_secret)
         client.api_host.should eq(api_host)
       end
 
-      it "api host should be overridable" do
+      it "api host value should be overridable" do
         client = Iprofiler::Client.new(new_api_key, new_api_secret, new_api_host)
         client.api_key.should eq(new_api_key)
         client.api_secret.should eq(new_api_secret)
@@ -61,16 +61,16 @@ describe Iprofiler::Api do
 
   describe "authentication", :vcr do
 
-    it "should be able to authenticate" do
+    it "should be successful with valid credentials" do
       client.valid_credentials?.should eq(true)
     end
 
-    it "should not be able to authenticate" do
+    it "should not be successful with in-valid credentials" do
       client.api_key = "DUMMY KEY"
       client.valid_credentials?.should eq(false)
     end
 
-    it "empty authentication parameters should not be allowed" do
+    it "should fail when authentication parameters are empty or missing" do
       client.api_key = nil
       reply = client.company_lookup({})
       reply.status.should eq(:error)
