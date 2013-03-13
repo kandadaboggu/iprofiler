@@ -21,9 +21,9 @@ Install the gem by using `bundler`
 
 ``` ruby
 Iprofiler.configure do |config|
-  config.api_key = "foo" 
-  config.api_secret = "bar"
-  config.api_host = "http://localhost:3000"
+  config.api_key = "<<YOUR API KEY>>" 
+  config.api_secret = "<<YOUR API SECRET>>" 
+  config.api_host = "http://visitoriq2.iprofile.net"
 end
 client = Iprofiler::Client.new
 ```
@@ -32,7 +32,11 @@ client = Iprofiler::Client.new
 **Setting the connection parameters per connection**
  
 ``` ruby
-client = Iprofiler::Client.new ("foo", "bar", "http://visitoriq2.iprofile.net")
+Iprofiler.configure do |config|
+  config.api_host = "http://visitoriq2.iprofile.net"
+end
+
+client = Iprofiler::Client.new ( "<<YOUR API KEY>>", "<<YOUR API SECRET>>")
 ```
  
 **Invoking the API**
