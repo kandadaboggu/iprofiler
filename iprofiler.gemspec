@@ -3,7 +3,7 @@ require File.expand_path('../lib/iprofiler/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.add_dependency 'hashie', '~> 2.0.2'
-  gem.add_dependency 'multi_json', '~> 1.7.3'
+  gem.add_dependency 'multi_json', '~> 1.7.7'
   gem.add_development_dependency 'json', '~> 1.7.7'
   gem.add_development_dependency 'rake', '~> 10.0.3'
   gem.add_development_dependency 'rdoc', '~> 4.0.0'
